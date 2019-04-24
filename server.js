@@ -13,13 +13,11 @@ require("./config/routes")(router);
 
 app.use(express.static(__dirname + "/public"));
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-
 // To connect Handlebars to the Express app
 app.engine("handlebars", expressHandlebars({
     defaultLayout: "main"
 }));
+app.set('view engine', 'handlebars');
 
 // To use bodyParser
 app.use(bodyParser.urlencoded({
