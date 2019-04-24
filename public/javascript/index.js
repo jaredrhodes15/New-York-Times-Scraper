@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     }
 
-    function renderEMpty(article) {
+    function renderEmpty(article) {
 
         var panel = 
         $(["<div class='alert alert-warning text-center'>",

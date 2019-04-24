@@ -3,16 +3,16 @@ var cheerio = require("cheerio");
 
 var scrape = function (cb) {
 
-    request("http://www.wsj.com", function(err, res, body){
+    request("https://www.kenpom.com", function(err, res, body){
 
         var $ = cheerio.load(body);
 
         var articles = []
 
-        $(".wsj-headline").each(function(i, element){
+        $("#hard_left").each(function(i, element){
 
-            var head = $(this).children(".wsj-headline-link").text().trim();
-            var sum = $(this).children("BLAHBLAH").text().trim();
+            var head = $(this).children("hard_left").text().trim();
+            var sum = $(this).children("next_left").text().trim();
 
             if(head && sum){
                 var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
@@ -23,7 +23,7 @@ var scrape = function (cb) {
                     summary: sumNeat
                 };
 
-                articles.phsh(dataToAdd);
+                articles.push(dataToAdd);
             }
         });
         cb(articles);
