@@ -1,44 +1,45 @@
-var express = require("express");
-var mongoose = require("mongoose");
-var expressHandlebars = require("express-handlebars");
-var bodyParser = require("body-parser");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const logger = require("morgan");
 
-var PORT = process.env.PORT || 3000;
+// Our scraping tools
+// Axios is a promised-based http library, similar to jQuery's Ajax method
+// It works on the client and on the server
 
-var app = express();
+const PORT = process.env.PORT || 3000;
+// Configure middleware
+// Initialize Express
+const app = express();
 
-var router = express.Router();
+const mongoose = require("mongoose");
 
-require("./config/routes")(router);
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-app.use(express.static(__dirname + "/public"));
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-// To connect Handlebars to the Express app
-app.engine("handlebars", expressHandlebars({
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+// Parse request body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Make public a static folder
+app.use(express.static("public"));
+
+app.engine(
+  "handlebars",
+  exphbs({
     defaultLayout: "main"
-}));
-app.set('view engine', 'handlebars');
+  })
+);
+app.set("view engine", "handlebars");
 
-// To use bodyParser
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+// Routes
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-app.use(router);
-
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines"
-
-// Connect Mongoose to the database
-mongoose.connect(db, function(error) {
-    if (error) {
-        console.log(error);
-    }
-
-    else {
-        console.log("mongoose connection is successful");
-    }
+app.listen(PORT, () => {
+  console.log("App running on port " + PORT + "!");
 });
 
-app.listen(PORT, function() {
-    console.log("Listening on port:" + PORT);
-});
+module.exports = app;

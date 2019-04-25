@@ -1,0 +1,14 @@
+{{> header article="active"}}
+<div class="container border">
+{{#each data}}
+    <ul>
+        <li>{{this.title}}</li>
+        <li><a href="{{this.link}}">{{this.link}}</a></li>
+        <button class="buttonNote btn btn-primary" data-id="{{this._id}}">Notes</button>
+        <button class="buttonDeleteFavorite btn btn-danger" data-id="{{this._id}}">Remove from Favorites</button>
+    <hr>
+    </ul>
+{{/each}}
+</div>
+
+{{> notes}}
