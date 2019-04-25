@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sayex/articalscraper.git"
+    "url": "git+https://github.com/jaredrhodes15/New-York-Times-Scraper"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sayex/articalscraper/issues"
+    "url": "https://github.com/jaredrhodes15/New-York-Times-Scraper/issues"
   },
-  "homepage": "https://github.com/sayex/articalscraper#readme",
+  "homepage": "https://github.com/jaredrhodes15/New-York-Times-Scraper#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
