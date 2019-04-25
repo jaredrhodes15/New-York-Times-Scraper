@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sayex/articalscraper.git"
+    "url": "git+https://github.com/jaredrhodes15/Wall-Street-Scraper.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sayex/articalscraper/issues"
+    "url": "https://github.com/jaredrhodes15/articalscraper/issues"
   },
-  "homepage": "https://github.com/sayex/articalscraper#readme",
+  "homepage": "https://github.com/jaredrhodes15h/articalscraper#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
